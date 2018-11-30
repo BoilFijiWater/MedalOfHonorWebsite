@@ -6,13 +6,13 @@ app = Flask(__name__)
 def render_main():
     return render_template('index.html')
 
-@app.route("/page1")
+@app.route("/GMYM")
 def render_page1():
-    return render_template('page1.html')
+    return render_template('GMYM.html')
 
-@app.route("/page2")
+@app.route("/CocoB")
 def render_page2():
-    return render_template('page2.html')
+    return render_template('CocoB.html')
     
 if __name__=="__main__":
-    app.run(debug=True, port=54321)
+    app.run(debug=False, port=54321)
