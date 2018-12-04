@@ -1,6 +1,11 @@
-from flask import Flask, url_for, render_template
+from flask import Flask, url_for, render_template, request, Markup, flash, Markup
+import os
+import json
 
 app = Flask(__name__)
+
+with open('medal_of_honor.jsonmedal_of_honor.json') as usmilitary_data:
+        military = json.load(usmilitary_data)
 
 @app.route("/") #annotation tells the url that will make this function run
 def render_main():
