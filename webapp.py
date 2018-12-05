@@ -6,6 +6,19 @@ app = Flask(__name__)
 
 with open('medal_of_honor.jsonmedal_of_honor.json') as usmilitary_data:
         military = json.load(usmilitary_data)
+        
+def toOption(s):
+    return "<option value=" + s + " >" + s + "</option>"
+    
+def show_place_fought():
+    LocationFaught = []
+    print(type(LocationFaught))
+    for p in position:
+        if p[" "] not in LocationFaught:
+            LocationFaught.append(p[])
+    print(listOfStates)
+    return 
+    
 
 @app.route("/") #annotation tells the url that will make this function run
 def render_main():
