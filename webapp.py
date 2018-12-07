@@ -4,7 +4,7 @@ import json
 
 app = Flask(__name__)
 
-with open('medal_of_honor.jsonmedal_of_honor.json') as usmilitary_data:
+with open('medal_of_honor.json') as usmilitary_data:
         military = json.load(usmilitary_data)
         
 def toOption(s):
@@ -14,10 +14,28 @@ def show_place_fought():
     LocationFaught = []
     print(type(LocationFaught))
     for p in position:
-        if p[" "] not in LocationFaught:
-            LocationFaught.append(p[])
-    print(listOfStates)
-    return 
+        if p["location name"] not in LocationFaught:
+            LocationFaught.append(p["location name"])
+    print(LocationFaught)
+    return LocationFaught
+
+@app.route("/")
+def render_creed():
+    str = ""
+    for po in get_location_opions():
+        str += toOption(po)
+    
+
+    
+    print(str)
+    return render_template('GMYM.html', strr = Markup(str))
+
+def Loc(state):
+    SP = 0
+    for pop in counties:
+        if pop["State"] == state:
+            Sp = Sp + pop["Population"]["2014 Population"]
+    return "Population:" + " " + str(Sp)    
     
 
 @app.route("/") #annotation tells the url that will make this function run
