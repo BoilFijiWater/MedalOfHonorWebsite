@@ -5,17 +5,17 @@ import json
 app = Flask(__name__)
 
 with open('medal_of_honor.json') as usmilitary_data:
-        military = json.load(usmilitary_data)
+        position = json.load(usmilitary_data)
         
 def toOption(s):
     return "<option value=" + s + " >" + s + "</option>"
     
-def show_place_fought():
+def get_location_opions():
     LocationFaught = []
     print(type(LocationFaught))
     for p in position:
-        if p["location name"] not in LocationFaught:
-            LocationFaught.append(p["location name"])
+        if p["name"] not in LocationFaught:
+            LocationFaught.append(p["awarded"]["location"]["name"])
     print(LocationFaught)
     return LocationFaught
 
@@ -24,18 +24,26 @@ def render_creed():
     str = ""
     for po in get_location_opions():
         str += toOption(po)
-    
-
-    
     print(str)
     return render_template('GMYM.html', strr = Markup(str))
 
 def Loc(state):
     SP = 0
     for pop in counties:
-        if pop["State"] == state:
-            Sp = Sp + pop["Population"]["2014 Population"]
-    return "Population:" + " " + str(Sp)    
+        if loc["name"] == state:
+            Sp = Sp + loc["location"]["name"]
+    return "location:" + " " + str(Sp)  
+
+@app.route("/GMYM")
+def render_ahj():
+    str = ""
+    for co in get_locafought_opions():
+        str += toOption(co)
+    chosenplace = request.args["name"]
+    funfact = loc(chosenplace)
+
+    print(str)
+    return render_template('GMYM.html', strr = Markup(str), angh = funfact)    
     
 
 @app.route("/") #annotation tells the url that will make this function run

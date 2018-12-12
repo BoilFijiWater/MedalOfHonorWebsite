@@ -4,7 +4,17 @@
     
     <!--page content-->
     {%block content%}
-    <h1>The Wars that people fought in</h1>
-		<form action="/war_facts">
-		 <select name="soldiers location">	
+		<h1>Locations and the soldiers that fought there</h1>
+		<p>See where soldiers fought</p>
+
+		<form action="/wutu">
+		  <select name="States">
+			{{ strr }}
+		  </select>
+		  <input type="submit">
+		</form>
+			
+				{{ angh }}
+		</body>
+</html>
     {%endblock%}
