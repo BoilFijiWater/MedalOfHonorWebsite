@@ -19,7 +19,7 @@ def get_location_opions():
     print(LocationFaught)
     return LocationFaught
 
-@app.route("/")
+@app.route("/GMYM")
 def render_creed():
     str = ""
     for po in get_location_opions():
@@ -29,20 +29,20 @@ def render_creed():
 
 def Loc(state):
     SP = 0
-    for pop in counties:
+    for loc in locationfaught:
         if loc["name"] == state:
             Sp = Sp + loc["location"]["name"]
     return "location:" + " " + str(Sp)  
 
-@app.route("/GMYM")
+@app.route("/wutu")
 def render_ahj():
     str = ""
-    for co in get_locafought_opions():
+    for co in get_location_opions():
         str += toOption(co)
     chosenplace = request.args["name"]
     funfact = loc(chosenplace)
 
-    print(str)
+    
     return render_template('GMYM.html', strr = Markup(str), angh = funfact)    
     
 
