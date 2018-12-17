@@ -8,31 +8,34 @@ with open('medal_of_honor.json') as usmilitary_data:
         position = json.load(usmilitary_data)
         
 def toOption(s):
-    return "<option value=" + s + " >" + s + "</option>"
+    print(Markup("<option value=" + s + " >" + s + "</option>"))
+    return Markup('<option value="' + s + '" >' + s + "</option>")
     
 def get_location_opions():
     LocationFaught = []
     print(type(LocationFaught))
     for p in position:
-        if p["name"] not in LocationFaught:
+        if p["awarded"]["location"]["name"] not in LocationFaught:
             LocationFaught.append(p["awarded"]["location"]["name"])
-    print(LocationFaught)
+    
     return LocationFaught
 
 @app.route("/GMYM")
 def render_creed():
     str = ""
-    for po in get_location_opions():
-        str += toOption(po)
-    print(str)
+    for loc in get_location_opions():
+        str += toOption(loc)
+        
+    
     return render_template('GMYM.html', strr = Markup(str))
 
 def Loc(state):
-    SP = 0
-    for loc in locationfaught:
-        if loc["name"] == state:
-            Sp = Sp + loc["location"]["name"]
-    return "location:" + " " + str(Sp)  
+    SP = ""
+    for loc in position:
+        if loc["awarded"]["location"]["name"] == state:
+            SP = SP + loc["name"]
+    
+    return "name:" + " " + str(SP)  
 
 @app.route("/wutu")
 def render_ahj():
@@ -40,7 +43,7 @@ def render_ahj():
     for co in get_location_opions():
         str += toOption(co)
     chosenplace = request.args["name"]
-    funfact = loc(chosenplace)
+    funfact = Loc(chosenplace)
 
     
     return render_template('GMYM.html', strr = Markup(str), angh = funfact)    
