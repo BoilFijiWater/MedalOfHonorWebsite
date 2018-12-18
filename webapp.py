@@ -47,7 +47,8 @@ def render_ahj():
 
     
     return render_template('GMYM.html', strr = Markup(str), angh = funfact)    
-    
+
+# this python code is for page 2 for the rank     
 
 @app.route("/") #annotation tells the url that will make this function run
 def render_main():
