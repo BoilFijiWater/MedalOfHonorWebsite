@@ -8,7 +8,6 @@ with open('medal_of_honor.json') as usmilitary_data:
         position = json.load(usmilitary_data)
         
 def toOption(s):
-    print(Markup("<option value=" + s + " >" + s + "</option>"))
     return Markup('<option value="' + s + '" >' + s + "</option>")
     
 def get_location_opions():
@@ -48,8 +47,43 @@ def render_ahj():
     
     return render_template('GMYM.html', strr = Markup(str), angh = funfact)    
 
-# this python code is for page 2 for the rank     
+# this python code is for page 2 for the rank   
+def get_ranks_opions():
+    MilitaryRanks = []
+    for r in position:
+        if r["military record"]["rank"] not in MilitaryRanks:
+            MilitaryRanks.append(r["military record"]["rank"])
+    
+    return MilitaryRanks
+    
+@app.route("/CocoB")
+def render_fred():
+    str = ""
+    print(get_ranks_opions())
+    for ran in get_ranks_opions():
+        str += toOption(ran)
+        
+    return render_template('CocoB.html', strr = Markup(str))
+    
+def ran(Mreward):
+    Mr = ""
+    for ran in position:
+        if ran["military record"]["rank"] == Mreward:
+            Mr = Mr + ran["name"] + ["military record"]
+    
+    return "name:" + " " + str(Mr)  
 
+@app.route("/kutu")
+def render_ajh():
+    str = ""
+    for pa in get_ranks_opions():
+        str += toOption(pa)
+    chosenrank = request.args["rank"]
+    ff = ran(chosenrank)
+
+    
+    return render_template('CocoB.html', strr = Markup(str), angh = ff) 
+   
 @app.route("/") #annotation tells the url that will make this function run
 def render_main():
     return render_template('index.html')
@@ -71,4 +105,4 @@ def render_page4():
     return render_template('CCFR.html')
     
 if __name__=="__main__":
-    app.run(debug=False, port=54321)
+    app.run(debug=True, port=54321)
