@@ -69,7 +69,7 @@ def ran(Mreward):
     Mr = ""
     for ran in position:
         if ran["military record"]["rank"] == Mreward:
-            Mr = Mr + ran["name"] + ["military record"]
+            Mr = Mr + ran["name"] 
     
     return "name:" + " " + str(Mr)  
 
