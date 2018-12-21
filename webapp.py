@@ -32,7 +32,7 @@ def Loc(state):
     SP = ""
     for loc in position:
         if loc["awarded"]["location"]["name"] == state:
-            SP = SP + loc["name"]
+            SP = SP + loc["name"] + loc["awarded"]["date"]["full"]+ loc["awarded"]["issued"] + loc["awarded"]["citation"]
     
     return "name:" + " " + str(SP)  
 
@@ -69,7 +69,7 @@ def ran(Mreward):
     Mr = ""
     for ran in position:
         if ran["military record"]["rank"] == Mreward:
-            Mr = Mr + ran["name"] 
+            Mr = Mr + ran["name"] + ran["military record"]["entered service at"] + ran["military record"]["company"] + ran["military record"]["organization"]
     
     return "name:" + " " + str(Mr)  
 
