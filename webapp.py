@@ -105,4 +105,4 @@ def render_page4():
     return render_template('CCFR.html')
     
 if __name__=="__main__":
-    app.run(debug=True, port=54321)
+    app.run(debug=False, port=54321)
