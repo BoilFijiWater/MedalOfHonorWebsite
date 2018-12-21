@@ -100,9 +100,6 @@ def render_page2():
 def render_page3():
     return render_template('fufu.html')
   
-@app.route("/CCFR")
-def render_page4():
-    return render_template('CCFR.html')
     
 if __name__=="__main__":
     app.run(debug=False, port=54321)
